@@ -1,0 +1,23 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  font-size: 18px;
+  background-color: #000000;
+  color: #fff;
+}
+.nav .logo {
+  font-size: 24px;
+
+}
+.nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.nav ul li {
+}
+.nav ul a {
+  color: #fff;
+  text-decoration: none;
+}
