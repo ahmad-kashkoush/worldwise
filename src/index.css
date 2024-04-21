@@ -32,6 +32,7 @@ body {
   color: var(--color-light--2);
   font-weight: 400;
   line-height: 1.6;
+  background-color: #333;
 }
 
 label {
@@ -84,7 +85,3 @@ li {
   },
 */
 
-
-.main{
-  display: flex;
-}

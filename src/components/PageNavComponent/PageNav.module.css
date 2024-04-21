@@ -1,23 +1,25 @@
+@import url("../../index.css");
 .nav {
   display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  font-size: 18px;
-  background-color: #000000;
-  color: #fff;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* for hamburger Menu */
 }
 .nav .logo {
-  font-size: 24px;
-
+  background: url(/src/assets/logo.png) center / contain no-repeat;
+  width: 272px;
+  height: 65px;
 }
 .nav ul {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  gap: 4rem;
 }
-.nav ul li {
-}
+
 .nav ul a {
-  color: #fff;
   text-decoration: none;
+  text-transform: uppercase;
+  color: var(--color-light--2);
+  font-weight: bold;
+  font-size: 1.5rem;
 }
