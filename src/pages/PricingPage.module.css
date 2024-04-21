@@ -1,0 +1,41 @@
+@import url("../index.css");
+.pricingPage {
+ 
+ 
+}
+
+.mainSection {
+  margin-top: 11rem;
+
+  max-width: 85rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7rem;
+}
+.mainSection h2 {
+  font-size: 4.5rem;
+  color: var(--color-light--2);
+}
+.mainSection p {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+.mainSection .image {
+  width: 100%;
+}
+
+@media (max-width: 1062px) {
+  .mainSection {
+    margin-top: 6rem;
+    display: block;
+    text-align: center;
+  }
+  .mainSection .image {
+    margin-top: 6rem;
+    --size: 39rem;
+    width: var(--size);
+    height: var(--size);
+  }
+}
