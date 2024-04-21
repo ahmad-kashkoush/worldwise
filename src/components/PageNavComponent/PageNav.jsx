@@ -15,7 +15,7 @@ export default function PageNav() {
           <NavLink to={"/pricing"}>Pricing</NavLink>
         </li>
         <li>
-          <NavLink to={"/profile"}>Product</NavLink>
+          <NavLink to={"/product"}>Product</NavLink>
         </li>
         <li>
           <NavLink to={"/login"} className="cta">Login</NavLink>

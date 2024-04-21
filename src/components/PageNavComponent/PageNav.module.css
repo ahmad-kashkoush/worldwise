@@ -4,9 +4,12 @@
   justify-content: space-between;
   align-items: center;
   position: relative; /* for hamburger Menu */
+  max-width: 91rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 .nav .logo {
-  background: url(/src/assets/logo.png) center / contain no-repeat;
+  background: url("logo.png") center / contain no-repeat;
   width: 272px;
   height: 65px;
 }
@@ -22,4 +25,8 @@
   color: var(--color-light--2);
   font-weight: bold;
   font-size: 1.5rem;
+}
+
+.nav :global(.active) {
+  color: var(--color-brand--2);
 }
