@@ -84,3 +84,8 @@ li {
   },
 */
 
+.main {
+  background-color: var(--color-dark--1);
+  padding: 2.5rem 5rem;
+  min-height: 100vh;
+}
