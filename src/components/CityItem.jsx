@@ -14,7 +14,6 @@ export default function CityItem({ city, onDeleteCity }) {
     emoji,
     date,
     id,
-    notes,
     position: { lat, lng },
   } = city;
   return (
@@ -24,7 +23,10 @@ export default function CityItem({ city, onDeleteCity }) {
         <span className={style.name}>{name}</span>
         <span className={style.date}>{formatDate(date)}</span>
         <button
-          onClick={() => onDeleteCity(city.id)}
+          onClick={(e) => {
+            e.preventDefault();
+            onDeleteCity(city.id);
+          }}
           className={style.deleteBtn}
         >
           &times;
