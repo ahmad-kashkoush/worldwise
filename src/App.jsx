@@ -10,7 +10,7 @@ import CityList from "./components/CityList.jsx";
 import { useCities } from "./Hooks/useCities.jsx";
 import CountryList from "./components/CountryList.jsx";
 import City from "./components/City.jsx";
-import  Form  from "./components/Form.jsx";
+import Form from "./components/Form.jsx";
 // import PageNav from "./components/PageNav";
 function App() {
   const { cities, isLoading, isError, handleDeleteCity } = useCities();

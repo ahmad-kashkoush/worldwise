@@ -18,7 +18,7 @@ export default function CityItem({ city, onDeleteCity }) {
   } = city;
   return (
     <li>
-      <Link className={style.cityItem} to={`${id}?lat=${lat}&lng=${lng}`}>
+      <Link className={style.cityItem} to={`cities/${id}?lat=${lat}&lng=${lng}`}>
         <span className={style.emoji}>{emoji}</span>
         <span className={style.name}>{name}</span>
         <span className={style.date}>{formatDate(date)}</span>

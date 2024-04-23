@@ -1,5 +1,5 @@
 .logo {
-  background: url("logo.png") center / contain no-repeat;
+  background: url("/public/logo.png") center / contain no-repeat;
   width: 272px;
   height: 65px;
 }
