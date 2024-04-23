@@ -1,12 +1,11 @@
 import { NavLink } from "react-router-dom";
 import style from "./PageNav.module.css";
 import style2 from "./hamburgerMenu.module.css";
+import Logo from "../Logo";
 export default function PageNav() {
   return (
     <nav className={style.nav}>
-      <NavLink to={"/"} className={style.logo}></NavLink>
-
-
+       <Logo />
       <label htmlFor="ham-checkbox" className={style2.hamburgerMenu}>
         <input type="checkbox" id="ham-checkbox" />
       </label>
