@@ -24,33 +24,7 @@ function App() {
           <Route path="product" element={<ProductPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="app" element={<AppLayout />}>
-            {/* Default Route */}
-            <Route
-              index
-              element={
-                <CityList
-                  onDeleteCity={handleDeleteCity}
-                  cities={cities}
-                  isLoading={isLoading}
-                  isError={isError}
-                />
-              }
-            />
-            <Route
-              path="cities"
-              element={
-                <CityList
-                  onDeleteCity={handleDeleteCity}
-                  cities={cities}
-                  isLoading={isLoading}
-                  isError={isError}
-                />
-              }
-            />
-            <Route
-              path="countries"
-              element={<CountryList countries={cities} />}
-            />
+            <Route index element={<Navigate  to={"cities"}/>}/>
             <Route index path="cities" element={<CityList />} />
             <Route path="countries" element={<CountryList />} />
             <Route path="cities/:id" element={<City />} />
