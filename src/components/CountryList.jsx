@@ -1,6 +1,7 @@
+import { useCities } from "../contexts/CitiesContext";
 import CountryItem from "./CountryItem";
 import style from "./CountryList.module.css";
-export default function CountryList({ countries }) {
+export default function CountryList() {
   // const x = new Set();
   // const derivedCountries = [];
   // countries.forEach((country) => {
@@ -8,6 +9,7 @@ export default function CountryList({ countries }) {
   //   x.add(country.country);
   //   derivedCountries.push(country);
   // });
+  const { cities: countries } = useCities();
 
   const derivedCountries = countries.reduce((arr, city) => {
     if (!arr.map((el) => el.country).includes(city.country))

@@ -1,27 +1,22 @@
 import CityItem from "./CityItem";
+import  Error  from "./Error.1";
+import Spinner from "./Spinner";
+// styles
 import style from "./CityList.module.css";
-import { useState } from "react";
-import { useCities } from "./useCities";
+
+// hooks
+import { useCities } from "../contexts/CitiesContext";
 
 export default function CityList() {
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState("");
-    const { cities } = useCities(setIsLoading, setIsError);
+  const { cities, isLoading, isError } = useCities();
 
-    return (
-        <ul className={style.cityList}>
-            {!isLoading && isError && <Error message={isError} />}
-            {isLoading && !isError && <Loader />}
-            {!isLoading &&
-                !isError &&
-                cities.map((city) => <CityItem key={city.id} city={city} />)}
-        </ul>
-    );
-}
-
-
-export default function Error({ message }) {
-    return (
-        <p>{message}</p>
-    );
+  return (
+    <ul className={style.cityList}>
+      {!isLoading && isError && <Error message={isError} />}
+      {isLoading && !isError && <Spinner />}
+      {!isLoading &&
+        !isError &&
+        cities.map((city) => <CityItem key={city.id} city={city} />)}
+    </ul>
+  );
 }
