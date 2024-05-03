@@ -24,6 +24,7 @@ export function convertToEmoji(countryCode) {
 
 function Form() {
   const [lat, lng] = useUrlPosition();
+  const navigate = useNavigate();
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
@@ -33,12 +34,57 @@ function Form() {
   const [isGeoLoading, setIsGeoLoading] = useState(false);
   const [geoError, setGeoError] = useState("");
   const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+  useEffect(() => {
+    async function fetchCityData() {
+      try {
+        setIsGeoLoading(true);
+        setGeoError("Start by clicking on the map");
+        if (!(lat && lng)) return;
+        const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
+        if (!res.ok) throw new Error("not able to fetch");
+        const data = await res.json();
+        if (!data.countryCode || !data.city)
+          throw new Error("Not a City, click somewhere else");
+        console.log(data);
+        setCountry(data.countryName);
+        setCityName(data.city);
+        setDate(new Date());
+        setEmoji(convertToEmoji(data.countryCode));
+        setGeoError("");
+      } catch (err) {
+        setGeoError(err.message);
+      } finally {
+        setIsGeoLoading(false);
+      }
+    }
+    fetchCityData();
+  }, [lat, lng]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!(cityName && country)) return;
+    await handleAddCity({
+      cityName,
+      country,
+      emoji,
+      date,
+      notes,
+      position: {
+        lat: +lat,
+        lng: +lng,
+      },
+    });
+
+    navigate(`/app`);
+  }
+
   if (isGeoLoading) return <Spinner />;
   if (geoError) {
     return <Message message={geoError} />;
   }
   return (
     <form
+      onSubmit={handleSubmit}
       className={`${styles.form} ${isLoading ? styles.loading : ""}`}
     >
       <div className={styles.row}>
@@ -70,7 +116,9 @@ function Form() {
       </div>
 
       <div className={styles.buttons}>
-        <Button type="primary">Add</Button>
+        <Button onClick={handleSubmit} buttonType="submit" type="primary">
+          Add
+        </Button>
         <ButtonBack />
       </div>
     </form>
