@@ -3,7 +3,7 @@ import { useState } from "react";
 /**
  * @return {Object} Object containing position, isLoading state, error message, and getCurrentPosition function
  */
-export function useGeolocation(defaultPosition=null) {
+export function useGeolocation(defaultPosition = null) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [position, setPosition] = useState(defaultPosition);
@@ -17,13 +17,11 @@ export function useGeolocation(defaultPosition=null) {
       (pos) => {
         setPosition({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         setIsLoading(false);
-        console.log(pos.coords);
       },
       (error) => {
         setError(error.message);
         setIsLoading(false);
       }
-
     );
   }
 
