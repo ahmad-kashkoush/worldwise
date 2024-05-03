@@ -32,7 +32,12 @@ function CitiesProvider({ children }) {
   function handleDeleteCity(id) {
     setCities((cities) => cities.filter((city) => city.id !== id));
   }
-
+  function handleAddCity(city) {
+    setCities((cities) => [
+      ...cities,
+      { ...city, id: 0 || cities.at(-1).id + 1 },
+    ]);
+  }
   function getCurrentCity(id) {
     (async function () {
       try {
@@ -58,7 +63,9 @@ function CitiesProvider({ children }) {
     <CitiesContext.Provider
       value={{
         cities,
+        handleAddCity,
         isLoading,
+        setIsLoading,
         isError,
         currentCity,
         onDeleteCity: handleDeleteCity,
