@@ -1,10 +1,18 @@
-// "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
+// https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=37.42159&longitude=-122.0837
+
 import ButtonBack from "./ButtonBack";
 import Button from "./Button";
+import Spinner from "./Spinner";
+import Message from "./Message";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 // styles
 import styles from "./Form.module.css";
 // hooks
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useCities } from "../contexts/CitiesContext";
+import { useUrlPosition } from "../hooks/useUrlPosition";
+import { useNavigate } from "react-router-dom";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -15,15 +23,26 @@ export function convertToEmoji(countryCode) {
 }
 
 function Form() {
+  const [lat, lng] = useUrlPosition();
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
-
+  const [emoji, setEmoji] = useState("");
+  const { handleAddCity, isLoading } = useCities();
+  const [isGeoLoading, setIsGeoLoading] = useState(false);
+  const [geoError, setGeoError] = useState("");
+  const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+  if (isGeoLoading) return <Spinner />;
+  if (geoError) {
+    return <Message message={geoError} />;
+  }
   return (
-    <form className={styles.form}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
+    >
       <div className={styles.row}>
-        <label htmlFor="cityName">City name</label>
+        <label htmlFor="cityName">cityName</label>
         <input
           id="cityName"
           onChange={(e) => setCityName(e.target.value)}
@@ -34,10 +53,10 @@ function Form() {
 
       <div className={styles.row}>
         <label htmlFor="date">When did you go to {cityName}?</label>
-        <input
+        <ReactDatePicker
           id="date"
-          onChange={(e) => setDate(e.target.value)}
-          value={date}
+          selected={date}
+          onSelect={(dte) => setDate(dte)}
         />
       </div>
 
