@@ -33,6 +33,11 @@ const initialState = {
 function reducer(prev, action) {
   const { payload, type } = action;
   switch (type) {
+    case "city/init":
+      return {
+        ...prev,
+        isGeoLoading: false,
+      };
     case "city/loading":
       return {
         ...prev,
@@ -56,7 +61,7 @@ function reducer(prev, action) {
     case "setNotes":
       return { ...prev, notes: payload };
     case "rejected":
-      return { ...prev, geoError: payload };
+      return { ...prev, geoError: payload, isGeoLoading: false };
   }
 }
 function Form() {
@@ -71,18 +76,19 @@ function Form() {
   useEffect(() => {
     async function fetchCityData() {
       try {
-        dispatch({ type: "city/loading" });
+        dispatch({ type: "city/init" });
         if (!(lat && lng)) return;
+        dispatch({ type: "city/loading" });
         const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
         if (!res.ok) throw new Error("not able to fetch");
         const data = await res.json();
         if (!data.countryCode || !data.city)
           throw new Error("Not a City, click somewhere else");
-        dispatch({ type: "city/loading", payload: data });
+        dispatch({ type: "city/loaded", payload: data });
       } catch (err) {
         dispatch({
           type: "rejected",
-          payload: "error fetching city data by lat&lng",
+          payload: "not a city, click somewhere else",
         });
       }
     }
