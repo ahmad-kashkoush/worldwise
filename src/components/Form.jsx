@@ -45,7 +45,6 @@ function Form() {
         const data = await res.json();
         if (!data.countryCode || !data.city)
           throw new Error("Not a City, click somewhere else");
-        console.log(data);
         setCountry(data.countryName);
         setCityName(data.city);
         setDate(new Date());
