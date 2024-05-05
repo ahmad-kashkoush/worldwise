@@ -78,7 +78,7 @@ function Form() {
         const data = await res.json();
         if (!data.countryCode || !data.city)
           throw new Error("Not a City, click somewhere else");
-        dispatch({ type: "city/loading", payload: data });
+        dispatch({ type: "city/loaded", payload: data });
       } catch (err) {
         dispatch({
           type: "rejected",
