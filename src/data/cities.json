@@ -1,52 +1,88 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": 73930385
-    },
-    {
-      "cityName": "Madrid",
+      "id": "d7fb",
+      "cityName": "Borriol",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
+      "date": "2024-05-05T08:45:04.198Z",
       "notes": "",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": 17806751
+        "lat": 40.071109533803316,
+        "lng": -0.06866455078125001
+      }
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "id": "3ecd",
+      "cityName": "Almassora",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-05-05T08:45:12.137Z",
+      "notes": "",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": 98443197
+        "lat": 39.97646237379361,
+        "lng": -0.12342453002929689
+      }
     },
     {
-      "cityName": "vankouver",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "id": "72f2",
+      "cityName": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-05-05T10:47:22.946Z",
+      "notes": "",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": 454545
+        "lat": 40.04128356064847,
+        "lng": -0.02300262451171875
+      }
+    },
+    {
+      "id": "383a",
+      "cityName": "Benicassim",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-05-05T10:47:28.179Z",
+      "notes": "",
+      "position": {
+        "lat": 40.040889297394315,
+        "lng": 0.05630493164062501
+      }
+    },
+    {
+      "id": "566d",
+      "cityName": "Shibin al Kawm",
+      "country": "Egypt",
+      "emoji": "🇪🇬",
+      "date": "2024-05-05T10:47:35.020Z",
+      "notes": "",
+      "position": {
+        "lat": 30.55413085720188,
+        "lng": 31.012172698974613
+      }
+    },
+    {
+      "id": "9a95",
+      "cityName": "Tala",
+      "country": "Egypt",
+      "emoji": "🇪🇬",
+      "date": "2024-05-05T10:47:40.368Z",
+      "notes": "",
+      "position": {
+        "lat": 30.654600497335878,
+        "lng": 30.959129333496097
+      }
+    },
+    {
+      "id": "5877",
+      "cityName": "Tala",
+      "country": "Egypt",
+      "emoji": "🇪🇬",
+      "date": "2024-05-05T10:47:47.837Z",
+      "notes": "Tala is nice\n",
+      "position": {
+        "lat": 30.70287744595804,
+        "lng": 30.89715957641602
+      }
     }
   ]
 }

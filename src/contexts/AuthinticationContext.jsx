@@ -40,7 +40,6 @@ function AuthProvider({ children }) {
   const [{ user, isAuthed }, dispatch] = useReducer(reducer, initialState);
   useEffect(function () {
     const storedUser = localStorage.getItem("storedState");
-    console.log(JSON.parse(storedUser));
     if (!storedUser) return;
     dispatch({ type: "init", payload: JSON.parse(storedUser) });
   }, []);

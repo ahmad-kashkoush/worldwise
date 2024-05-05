@@ -97,7 +97,6 @@ function Form() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(cityName, country);
     if (!(cityName && country)) return;
     await handleAddCity({
       cityName,

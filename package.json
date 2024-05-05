@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "datepicker": "^0.0.0",
+    "firebase": "^10.11.1",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-datepicker": "^6.9.0",

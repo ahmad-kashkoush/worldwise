@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { useFirebase } from "../hooks/useFirebase";
 
 const BASE_URL = "http://localhost:9000";
 const CitiesContext = createContext();
@@ -9,6 +10,7 @@ const initialState = {
   currentCity: {},
   citiesUpdated: false,
 };
+
 function reducer(state, action) {
   const { type, payload } = action;
   switch (type) {
@@ -59,14 +61,15 @@ function reducer(state, action) {
 function CitiesProvider({ children }) {
   const [{ cities, isLoading, error, currentCity, citiesUpdated }, dispatch] =
     useReducer(reducer, initialState);
+  const { insert, del, getCities, getCurCity } = useFirebase();
   useEffect(() => {
     async function fetchCitiesData() {
       try {
         dispatch({ type: "loading" });
-        const res = await fetch(`${BASE_URL}/cities`);
-        if (!res.ok) throw new Error("failed to fetch");
-        const data = await res.json();
-
+        // const res = await fetch(`${BASE_URL}/cities`);
+        // if (!res.ok) throw new Error("failed to fetch");
+        // const data = await res.json();
+        const data = await getCities();
         dispatch({ type: "cities/loaded", payload: data });
       } catch (err) {
         dispatch({ type: "rejected", payload: "error fetching cities" });
@@ -78,13 +81,14 @@ function CitiesProvider({ children }) {
   async function handleDeleteCity(id) {
     dispatch({ type: "cities/deleted", payload: id });
     try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
+      // const res = await fetch(`${BASE_URL}/cities/${id}`, {
+      //     method: "DELETE",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   });
+      //   const data = await res.json();
+      const data = await del(id);
       return data;
     } catch (err) {
       dispatch({ type: "rejected", payload: "error deleting city" });
@@ -93,17 +97,21 @@ function CitiesProvider({ children }) {
   async function handleAddCity(city) {
     try {
       dispatch({ type: "loading" });
-      const res = await fetch(`${BASE_URL}/cities`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(city),
-      });
-      const data = await res.json();
-
-      dispatch({ type: "cities/added", payload: data });
-      return data;
+      // const res = await fetch(`${BASE_URL}/cities`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(city),
+      // });
+      // const data = await res.json();
+      city.id = Math.random().toString(36).substring(7);
+      city.date = new Date().toString();
+      const key = await insert(city);
+      city.id=key;
+      dispatch({ type: "cities/added", payload: city });
+      return key;
+      // return data;
     } catch (err) {
       dispatch({ type: "rejected", payload: "error adding city" });
     }
@@ -112,11 +120,11 @@ function CitiesProvider({ children }) {
     if (currentCity && currentCity.id === id) return;
     try {
       dispatch({ type: "loading" });
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
+      // const res = await fetch(`${BASE_URL}/cities/${id}`);
 
-      if (!res.ok) throw new Error("failed to fetch");
-      const data = await res.json();
-
+      // if (!res.ok) throw new Error("failed to fetch");
+      // const data = await res.json();
+      const data = await getCurCity(id);
       if (!data) throw new Error("City Not found");
       dispatch({ type: "currentCity/loaded", payload: data });
     } catch (err) {
