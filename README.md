@@ -10,7 +10,11 @@ fetch data.
 The app allows users to navigate to different routes and view a list of visited
 cities. It also utilizes Firebase for authentication and storing visited cities.
 ## Demo
-![worldwide demo](public/worldwise%20demo.mp4)
+
+
+https://github.com/ahmad-kashkoush/worldwise/assets/89735230/7e35aea4-2408-41ce-b6a3-acb62557d7a1
+
+
 ## Features
 
 - Responsive navigation bar with links to the homepage, pricing page, and a
