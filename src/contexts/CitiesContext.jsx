@@ -1,7 +1,6 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useCallback, useContext, useEffect, useReducer } from "react";
 import { useFirebase } from "../hooks/useFirebase";
 
-const BASE_URL = "http://localhost:9000";
 const CitiesContext = createContext();
 const initialState = {
   cities: [],
@@ -97,18 +96,10 @@ function CitiesProvider({ children }) {
   async function handleAddCity(city) {
     try {
       dispatch({ type: "loading" });
-      // const res = await fetch(`${BASE_URL}/cities`, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(city),
-      // });
-      // const data = await res.json();
       city.id = Math.random().toString(36).substring(7);
       city.date = new Date().toString();
       const key = await insert(city);
-      city.id=key;
+      city.id = key;
       dispatch({ type: "cities/added", payload: city });
       return key;
       // return data;
@@ -116,7 +107,7 @@ function CitiesProvider({ children }) {
       dispatch({ type: "rejected", payload: "error adding city" });
     }
   }
-  async function getCurrentCity(id) {
+  const getCurrentCity = useCallback(async (id) => {
     if (currentCity && currentCity.id === id) return;
     try {
       dispatch({ type: "loading" });
@@ -133,7 +124,7 @@ function CitiesProvider({ children }) {
         payload: "error loading current active city",
       });
     }
-  }
+  }, [currentCity.id]);
 
   return (
     <CitiesContext.Provider

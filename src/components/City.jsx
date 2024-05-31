@@ -13,7 +13,7 @@ function City() {
   const { currentCity, getCurrentCity, isLoading } = useCities();
   useEffect(() => {
     getCurrentCity(id);
-  }, [id]);
+  }, [id, getCurrentCity]);
 
   // if(currentCity)return null;
   const { cityName, emoji, date, notes } = currentCity;
